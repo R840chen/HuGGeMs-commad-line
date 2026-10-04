@@ -313,3 +313,50 @@ interactively and is not scripted in this folder.
 Included reference/marker files:
 - `reference/GCA_013009555.1_ASM1300955v1_genomic.fna`
 - `clade_markers/Phocaeicola_dorei_species_357276.ffn`
+
+---
+
+## D. Positional distribution of marker genes (Supplementary Table S21)
+
+`marker_position_analysis/`
+
+This analysis uses **no external software**: no read mapper, no aligner package
+and no C compiler were available on the machine used, so a minimal
+seed-and-extend nucleotide aligner is implemented in pure numpy
+(`mapper.py`, k = 15 seeds, gapless extension, both strands). Only `numpy` and
+`openpyxl` are required.
+
+**Parameters**
+
+| Parameter | Value | Where |
+|---|---|---|
+| Seed length `K` | 15 | `mapper.py` |
+| Minimum identity for "present" | 0.80 (reporting) / 0.90 (calling a marker present) | `mapper.py` / `02_map_markers.py` |
+| Minimum coverage for "present" | 0.90 | `mapper.py` |
+| Candidate shift search on extension | ±8 bp | `mapper.py` |
+| Gap defining a new independent locus | > 5 kb | `03_position_stats.py` |
+| Density windows tested | 10 / 20 / 50 kb | `03_position_stats.py` |
+| Uniformity tests | one-sample Kolmogorov–Smirnov (within contig, along oriC→ter axis); chi-square across contigs (>20 kb only) | `03_position_stats.py` |
+| Minimum contig length for axis reconstruction | 20 kb | `04_oric_axis_bias.py` |
+| oriC→ter axis | orient each contig by the slope of cumulative GC skew (2-kb windows), then order contigs by mean cumulative skew | `04_oric_axis_bias.py` |
+| Copy-number model | `C(x) = R^(1−x)`, x = 0 at oriC, x = 1 at ter; R tested at 2, 4, 8 | `04_oric_axis_bias.py` |
+
+**Commands**
+
+```bash
+cd marker_position_analysis
+bash fetch_genomes.sh                  # downloads GCA_025567015.1, GCA_020687025.1, GCA_014297375.1 into ./data
+# place Brotolimicola_acetigignens_species_2981769.ffn and
+# Dysosmobacter_hominis_species_2763041.ffn in ./data as well
+python 02_map_markers.py
+python 03_position_stats.py
+python 04_oric_axis_bias.py
+python 05_gc_and_skew.py
+python 06_final_checks.py
+python 07_make_tableS21.py
+```
+
+Inputs are read from `$MARKER_DATA_DIR` (default `./data`); results are written
+to `$MARKER_OUT_DIR` (default the script directory). See
+`marker_position_analysis/README.md` for the accuracy self-check, the key
+results and the caveats.

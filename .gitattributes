@@ -1,0 +1,7 @@
+# Keep line endings LF in the repository and in the working tree so that the
+# shell scripts run on Linux/macOS as published.
+* text=auto eol=lf
+*.sh text eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.R  text eol=lf

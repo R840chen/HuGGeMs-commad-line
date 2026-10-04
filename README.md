@@ -2,8 +2,10 @@
 
 This repository contains the scripts and the exact command lines used for
 (i) the CAMI2 and synthetic-community benchmarks, (ii) the profiling of real
-metagenomes, (iii) the strain-level test, and (iv) the MaAsLin3 differential
-abundance / prevalence analysis reported in the HuGGeMs manuscript.
+metagenomes, (iii) the strain-level test, (iv) the MaAsLin3 differential
+abundance / prevalence analysis, and (v) the positional distribution of marker
+genes within genomes (Supplementary Table S21), reported in the HuGGeMs
+manuscript.
 
 It is provided to satisfy the request for a *complete command-line parameter
 list* and to allow full reproduction of the analyses.
@@ -33,6 +35,10 @@ real-metagenome-profiling/           # real metagenomes
     └── RUN.R                        # MaAsLin3 batch run on MetaPhlAn4 profiles
 
 test_profiling_strainphlan/          # strain-level test (PRJDB4176, colon cancer)
+
+marker_position_analysis/            # where marker genes sit in the genome and the
+                                     # replication-associated bias (Supplementary Table S21);
+                                     # self-contained and runnable as published — see its README
 ```
 
 ## 2. Software used
@@ -160,6 +166,20 @@ python 02_collect_results.py              # qval_joint < 0.05
 python 03_analyze_robustness.py
 ```
 
+Typical marker-position workflow (path-clean, runs as published):
+
+```bash
+cd marker_position_analysis
+bash fetch_genomes.sh                     # 3 genomes from NCBI into ./data
+# copy the two marker .ffn sets into ./data as well
+python 02_map_markers.py                  # markers -> genome positions
+python 03_position_stats.py               # loci / spacing / window density / KS tests
+python 04_oric_axis_bias.py               # oriC->ter axis and replication-bias estimate
+python 05_gc_and_skew.py
+python 06_final_checks.py                 # aligner self-check and controls
+python 07_make_tableS21.py                # Supplementary Table S21
+```
+
 ## 5. Notes on reproducibility
 
 - **Data files are not included.** Large intermediate files
@@ -180,3 +200,7 @@ python 03_analyze_robustness.py
 - **StrainPhlAn step.** This directory contains the MetaPhlAn and
   `sample2markers.py` steps plus an example output; the final `strainphlan`
   call itself was run interactively and is not scripted here.
+- **`marker_position_analysis/` is the exception.** Unlike the other folders,
+  its scripts contain no hard-coded paths: inputs are read from `./data` (or
+  `$MARKER_DATA_DIR`) and outputs written to the script directory (or
+  `$MARKER_OUT_DIR`), so the pipeline runs as published.
