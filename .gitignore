@@ -1,0 +1,23 @@
+# ---- large data / intermediate files (reproducible, not part of the command-line record) ----
+*.pkl
+*.fna
+*.fasta
+*.fa
+*.fastq
+*.fq
+*.fastq.gz
+*.fq.gz
+*.sam
+*.bam
+*.bz2
+*.gz
+*.zip
+*.rar
+
+# ---- OS / editor ----
+.DS_Store
+Thumbs.db
+desktop.ini
+*~
+~$*
+*.tmp
