@@ -5,8 +5,8 @@ Put the five input files here, or set the environment variable
 
 | File name | Where it comes from |
 |---|---|
-| `Brotolimicola_acetigignens_species_2981769.ffn` | marker set (200 sequences) of SGB_2981769, extracted from the HuGGeMs database; also provided as Supplementary data |
-| `Dysosmobacter_hominis_species_2763041.ffn` | marker set (200 sequences) of SGB_2763041, extracted from the HuGGeMs database; also provided as Supplementary data |
+| `Brotolimicola_acetigignens_species_2981769.ffn` | marker set (200 sequences) of *Waltera acetigignens*, extracted from the HuGGeMs database; also provided as Supplementary data |
+| `Dysosmobacter_hominis_species_2763041.ffn` | marker set (200 sequences) of *Dysosmobacter hominis*, extracted from the HuGGeMs database; also provided as Supplementary data |
 | `GCA_025567015.1_ASM2556701v1_genomic.fna` | NCBI GenBank `GCA_025567015.1` (*Waltera acetigignens*, strain 1) |
 | `GCA_020687025.1_ASM2068702v1_genomic.fna` | NCBI GenBank `GCA_020687025.1` (*Waltera acetigignens*, strain 2) |
 | `GCA_014297375.1_ASM1429737v1_genomic.fna` | NCBI GenBank `GCA_014297375.1` (*Dysosmobacter hominis*) |

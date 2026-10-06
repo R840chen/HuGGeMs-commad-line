@@ -316,7 +316,7 @@ Included reference/marker files:
 
 ---
 
-## D. Positional distribution of marker genes (Supplementary Table S21)
+## D. Positional distribution of marker genes
 
 `marker_position_analysis/`
 
@@ -345,15 +345,13 @@ seed-and-extend nucleotide aligner is implemented in pure numpy
 
 ```bash
 cd marker_position_analysis
-bash fetch_genomes.sh                  # downloads GCA_025567015.1, GCA_020687025.1, GCA_014297375.1 into ./data
-# place Brotolimicola_acetigignens_species_2981769.ffn and
-# Dysosmobacter_hominis_species_2763041.ffn in ./data as well
+bash fetch_genomes.sh                  # downloads the three genomes into ./data
+# place the two marker .ffn sets in ./data as well
 python 02_map_markers.py
 python 03_position_stats.py
 python 04_oric_axis_bias.py
 python 05_gc_and_skew.py
 python 06_final_checks.py
-python 07_make_tableS21.py
 ```
 
 Inputs are read from `$MARKER_DATA_DIR` (default `./data`); results are written

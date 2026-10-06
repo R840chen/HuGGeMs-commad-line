@@ -4,8 +4,7 @@ This repository contains the scripts and the exact command lines used for
 (i) the CAMI2 and synthetic-community benchmarks, (ii) the profiling of real
 metagenomes, (iii) the strain-level test, (iv) the MaAsLin3 differential
 abundance / prevalence analysis, and (v) the positional distribution of marker
-genes within genomes (Supplementary Table S21), reported in the HuGGeMs
-manuscript.
+genes within genomes, reported in the HuGGeMs manuscript.
 
 It is provided to satisfy the request for a *complete command-line parameter
 list* and to allow full reproduction of the analyses.
@@ -37,8 +36,8 @@ real-metagenome-profiling/           # real metagenomes
 test_profiling_strainphlan/          # strain-level test (PRJDB4176, colon cancer)
 
 marker_position_analysis/            # where marker genes sit in the genome and the
-                                     # replication-associated bias (Supplementary Table S21);
-                                     # self-contained and runnable as published — see its README
+                                     # replication-associated bias; self-contained
+                                     # and runnable as published — see its README
 ```
 
 ## 2. Software used
@@ -177,7 +176,6 @@ python 03_position_stats.py               # loci / spacing / window density / KS
 python 04_oric_axis_bias.py               # oriC->ter axis and replication-bias estimate
 python 05_gc_and_skew.py
 python 06_final_checks.py                 # aligner self-check and controls
-python 07_make_tableS21.py                # Supplementary Table S21
 ```
 
 ## 5. Notes on reproducibility

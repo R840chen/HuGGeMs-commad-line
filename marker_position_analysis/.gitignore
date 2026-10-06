@@ -2,7 +2,6 @@
 marker_records.json
 pos_summary.json
 oric_bias.json
-Supplementary Table S21*.xlsx
 
 # ---- input FASTA (download with fetch_genomes.sh; marker sets come from the HuGGeMs database) ----
 data/*.fna
